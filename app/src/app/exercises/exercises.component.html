@@ -1,0 +1,39 @@
+<div class="container">
+    <h2 class="title">Exercise List</h2>
+    
+    <div class="actions">
+      <button class="btn" (click)="getAllExercises()" [disabled]="loading">Refresh List</button>
+      <input type="text" class="input" placeholder="Enter Exercise Code" #codeInput />
+      <button class="btn" (click)="getExerciseByCode(codeInput.value)" [disabled]="loading">Get Exercise By Code</button>
+      <button class="btn danger" (click)="deleteAll()" [disabled]="loading">Delete All</button>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  
+    <ul class="exercise-list">
+      <li *ngFor="let exercise of exercises" class="exercise-item">
+        <strong>Code:</strong> {{ exercise.code }}<br>
+        <strong>Source:</strong> {{ exercise.source }}<br>
+        <strong>Code List Code:</strong> {{ exercise.codeListCode }}<br>
+        <strong>Display Value:</strong> {{ exercise.displayValue }}<br>
+        <strong>Long Description:</strong> {{ exercise.longDescription }}<br>
+        <strong>From Date:</strong> {{ exercise.fromDate }}<br>
+        <strong>To Date:</strong> {{ exercise.toDate }}<br>
+        <strong>Sorting Priority:</strong> {{ exercise.sortingPriority }}<br>
+      </li>
+    </ul>
+  
+    <!-- Section for the item retrieved by code -->
+    <div *ngIf="exerciseByCode" class="section">
+      <h2>Exercise Retrieved By Code</h2>
+      <p><strong>Code:</strong> {{ exerciseByCode?.code }}</p>
+      <p><strong>Source:</strong> {{ exerciseByCode?.source }}</p>
+      <p><strong>Code List Code:</strong> {{ exerciseByCode?.codeListCode }}</p>
+      <p><strong>Display Value:</strong> {{ exerciseByCode?.displayValue }}</p>
+      <p><strong>Long Description:</strong> {{ exerciseByCode?.longDescription }}</p>
+      <p><strong>From Date:</strong> {{ exerciseByCode?.fromDate }}</p>
+      <p><strong>To Date:</strong> {{ exerciseByCode?.toDate }}</p>
+      <p><strong>Sorting Priority:</strong> {{ exerciseByCode?.sortingPriority }}</p>
+    </div>
+  </div>
+  
