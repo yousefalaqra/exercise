@@ -49,10 +49,10 @@ export class ApiService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+        `Backend returned code ${error.status}, ` + `body was: ${error.error.message}`
       );
     }
     // Return an observable with a user-facing error message.
-    return throwError('Something went wrong, please try again later.');
+    return throwError(error.error.message);
   }
 }

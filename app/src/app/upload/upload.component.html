@@ -1,29 +1,13 @@
-<input
-  type="file"
-  class="file-input"
-  (change)="onFileSelected($event)"
-  #fileUpload
-/>
-
-<div class="file-upload">
-  {{ selectedFile?.name || "No file uploaded yet." }}
-
-  <button
-    mat-mini-fab
-    color="primary"
-    class="upload-btn"
-    (click)="fileUpload.click()"
-  >
-    <mat-icon>attach_file</mat-icon>
-  </button>
-
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onSubmit()"
-    [disabled]="!selectedFile"
-    [matTooltip]="!selectedFile ? 'Please select a file' : ''"
-  >
-    Upload
-  </button>
+<div class="upload-container">
+  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload />
+  <div class="file-upload">
+    <span *ngIf="selectedFile" class="file-name">{{ selectedFile?.name }}</span>
+    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!selectedFile">
+      Upload
+    </button>
+  </div>
+  <div *ngIf="uploadError" class="error-message">{{ uploadError }}</div>
 </div>
